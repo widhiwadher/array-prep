@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calci.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+   <script src="app.js"></script>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="home.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Features</a>
+           
+          </div>
+        </div>
+      </nav>
+
+
+
+    <div class="container-fluid mt-6">
+        <div id="keyboard">
+            <div id="history"></div>
+            <div class="mt-6 " id="display"></div>
+        </div>
+        <div class="container ">
+            <div class="row p-3">
+                <button class="btn btn-secondary" id="clear" onclick="showClear()">C</button>
+                <button class="btn btn-secondary" id="clear" onclick="clearLast()">CE</button>
+                <button class="btn btn-warning operator" id="%" onclick="operator ('%')">%</button>
+                <button class="btn btn-warning operator" id="/" onclick="operator ('/')">/</button>
+            </div>
+            <div class="row p-3">
+                <button class="btn btn-primary" id="1" onclick="showValue(1)">1</button>
+                <button class="btn btn-primary" id="2" onclick="showValue(2)">2</button>
+                <button class="btn btn-primary" id="3" onclick="showValue(3)">3</button>
+                <button class="btn btn-warning operator" id="sum" onclick="operator('+')">+</button>
+            </div>
+            <div class="row p-3">
+                <button class="btn btn-primary" id="4" onclick="showValue (4)">4</button>
+                <button class="btn btn-primary" id="5" onclick="showValue(5)">5</button>
+                <button class="btn btn-primary" id="6" onclick="showValue(6)">6</button>
+                <button class="btn btn-warning operator" id="-" onclick="operator('-')">-</button>
+            </div>
+            <div class="row p-3">
+                <button class="btn btn-primary" id="7" onclick="showValue (7)">7 </button>
+                <button class="btn btn-primary" id="8" onclick="showValue (8)">8</button>
+                <button class="btn btn-primary" id="9" onclick="showValue (9)">9</button>
+                <button class="btn btn-warning operator" id="x" onclick="operator ('*')">x</button>
+            </div>
+
+
+            <div class="row p-3">
+                <button class="btn btn-primary" onclick="showValue(0)" id='0'>0</button>
+
+                <button class="btn btn-primary operator" onclick="operator('.')" id=".">.</button>
+                <button class="btn btn-warning" onclick="solution ()" id="=">=</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+
+        function showValue(i) {
+            var x = i;
+            document.getElementById('display').innerHTML += i;
+
+        }
+        function operator(i) {
+            var value = document.getElementById('display').innerHTML;
+
+
+            if (value.charAt(value.length - 1) == i) {
+
+            }
+
+            else if (value.charAt(value.length - 1) == !i || isNaN(value.charAt(value.length - 1))) {
+
+                var last = (value.charAt(value.length - 1));
+
+                var final = value.replace(last,i);
+
+                document.getElementById('display').innerHTML = value.replace(value.charAt(value.length - 1), i);
+
+            }
+
+            else if (value) {
+                document.getElementById('display').innerHTML += i;
+            }
+
+        }
+
+     function clearLast() {
+         var value =  document.getElementById('display').innerHTML;
+           var slice = value.slice(0,-1);
+           document.getElementById('display').innerHTML = slice;
+           document.getElementById('history').innerHTML = " ";
+
+     }
+
+
+
+        function showClear() {
+            document.getElementById('display').innerHTML = " ";
+            document.getElementById('history').innerHTML = " ";
+        }
+
+        function solution() {
+            var numbers = document.getElementById('display').innerHTML;
+
+            var solution = eval(numbers);
+            var finalResult = numbers + '=' + solution + "\n";
+            document.getElementById('display').innerHTML = solution;
+            document.getElementById('history').innerText += finalResult;
+
+
+        }
+       
+    </script>
+
+</body>
+
+</html>
