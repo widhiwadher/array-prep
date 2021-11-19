@@ -74,3 +74,5 @@ function saatseJyada (x) {
 
  const graterSeven = example.filter((x) => x > 7 );
  console.log(graterSeven);
+
+//  reducer function 
